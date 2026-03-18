@@ -9,6 +9,12 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Products", href: "/products" },
+    { name: "About Us", href: "/about" },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -39,12 +45,11 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-gray-300 hover:text-accent font-medium transition-colors">
-            Home
-          </Link>
-          <Link href="/products" className="text-gray-300 hover:text-accent font-medium transition-colors">
-            Products
-          </Link>
+          {navLinks.map((link) => (
+            <Link key={link.name} href={link.href} className="text-gray-300 hover:text-accent font-medium transition-colors">
+              {link.name}
+            </Link>
+          ))}
           <a
             href={whatsappLink}
             target="_blank"
